@@ -22,15 +22,15 @@ app.use(express.static(__dirname + '/public'));
 app.use(session({secret: 'conduit', cookie: {maxAge: 60000}, resave: false, saveUninitialized: false}));
 
 if (!isProduction) {
-  app.use(errorhandler());
+    app.use(errorhandler());
 }
 
 if (isProduction) {
-  mongoose.connect(process.env.MONGODB_URI);
+    mongoose.connect(process.env.MONGODB_URI);
 } else {
-  mongoose.connect('mongodb://localhost/product-locaux');
-  mongoose.set('debug', true);
-  console.log('Connexion à la bdd réussie')
+    mongoose.connect('mongodb://localhost/product-locaux');
+    mongoose.set('debug', true);
+    console.log('Connexion à la bdd réussie')
 }
 
 require('./models/User');
@@ -39,36 +39,36 @@ require('./config/passport');
 app.use(require('./routes'));
 
 app.use(function (req, res, next) {
-  let err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+    let err = new Error('Not Found');
+    err.status = 404;
+    next(err);
 });
 
 if (!isProduction) {
-  app.use(function (err, req, res, next) {
-    console.log(err.stack);
+    app.use(function (err, req, res, next) {
+        console.log(err.stack);
 
-    res.status(err.status || 500);
+        res.status(err.status || 500);
 
-    res.json({
-      'errors': {
-        message: err.message,
-        error: err
-      }
+        res.json({
+            'errors': {
+                message: err.message,
+                error: err
+            }
+        });
     });
-  });
 }
 
 app.use(function (err, req, res, next) {
-  res.status(err.status || 500);
-  res.json({
-    'errors': {
-      message: err.message,
-      error: {}
-    }
-  });
+    res.status(err.status || 500);
+    res.json({
+        'errors': {
+            message: err.message,
+            error: {}
+        }
+    });
 });
 
 const server = app.listen(process.env.PORT || 5000, function () {
-  console.log('Serveur lancé sur le port ' + server.address().port);
+    console.log('Serveur lancé sur le port ' + server.address().port);
 });

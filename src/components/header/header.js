@@ -1,17 +1,20 @@
 import React from 'react';
-import {BrowserRouter, Link} from "react-router-dom";
+import {BrowserRouter, NavLink} from "react-router-dom";
+import "./header.css";
 
 function Header() {
     return (
         <>
             <BrowserRouter>
-                <ul>
-                    <li>
-                        <Link to="/accueil"> Accueil</Link>
-                    </li>
-                    <li>Producteurs</li>
-                    <li>Marcher</li>
-                </ul>
+                <div className="header h-20 flex justify-center">
+                    <ul className="flex p-0 w-5/6 justify-center items-center">
+                        <li>
+                            <NavLink activeClassName="active" to="/accueil"> Accueil</NavLink>
+                        </li>
+                        <li>Producteurs</li>
+                        <li>Marcher</li>
+                    </ul>
+                </div>
             </BrowserRouter>
         </>
     );

@@ -36,7 +36,7 @@ router.put('/user', auth.required, function (req, res, next) {
     }).catch(next);
 });
 
-router.post('/users/login', function (req, res, next) {
+router.post('/user/login', function (req, res, next) {
     if (!req.body.user.email) {
         return res.status(422).json({errors: {email: "can't be blank"}});
     }
