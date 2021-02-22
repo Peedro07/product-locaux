@@ -1,16 +1,13 @@
 const express = require('express');
 const cors = require('cors');
-const bodyParser = require('body-parser');
+const bodyParser = require('body-parser')
 const mongoose = require('mongoose');
 const db = require('./models/mongoose.model');
+
 const app = express();
-
-require('./route/user.route')(app);
-app.use(cors());
-
-app.use(bodyParser.json());
-
-mongoose.Promise = global.Promise
+app.use(cors())
+app.use(bodyParser.json({limit: '50mb'}));
+mongoose.Promise = global.Promise;
 
 const port = 5000;
 
@@ -28,3 +25,5 @@ db.mongoose.connect(db.url, {useNewUrlParser:true, useUnifiedTopology: true})
         console.log('error');
         process.exit()
     })
+
+require('./route/user.route')(app);

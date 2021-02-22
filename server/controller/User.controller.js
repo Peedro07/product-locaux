@@ -8,20 +8,21 @@ exports.create = (req, res) => {
         });
         return;
     }
+
     const user = new userDb({
         username: req.body.username,
-        email: req.body.email,
         password: req.body.password,
-    })
+        email: req.body.email
+    });
 
     user
         .save(user)
         .then(data => {
-            send(data);
+            res.send(data);
         })
         .catch(err => {
             res.status(500).send({
                 message: err.message || "Une erreur est survenue lors de l'ajout en base de données"
             });
         });
-}
+};
