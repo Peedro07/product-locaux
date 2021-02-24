@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import '../../index.css';
 
 class Homepage extends Component {
+
     render() {
         return (
             <div className="container mx-auto z-20 mt-36">

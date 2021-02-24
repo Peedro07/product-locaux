@@ -27,6 +27,7 @@ class Login extends Component {
                 this.state.password)
             .then(
                 () => {
+                    console.log(AuthenticationService.getCurrentUser())
                     this.props.history.push('/');
                 },
                 error => {
