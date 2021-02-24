@@ -1,6 +1,9 @@
 import React from 'react';
-import {BrowserRouter as Router, NavLink} from "react-router-dom";
+import {BrowserRouter as Router, NavLink, Route, Switch} from "react-router-dom";
 import "./header.css";
+import Homepage from "../homepage/Homepage";
+import Login from "../login/login";
+import Register from "../register/Register";
 
 function Header() {
     return (
@@ -12,22 +15,29 @@ function Header() {
                     </div>
                     <ul className="flex p-0 w-5/6 justify-end items-center mr-6 mt-6 font-semibold text-white">
                         <li className="mr-6 transform hover:scale-105 duration-150">
-                            <NavLink activeClassName="underline" to="/">Accueil</NavLink>
+                            <NavLink activeClassName="underline" to="/" exact>Accueil</NavLink>
                         </li>
                         <li className="mr-6 transform hover:scale-105 duration-150"><NavLink activeClassName="underline"
-                                                                                             to="/producteurs">Producteurs</NavLink>
+                                                                                             to="/producteurs"
+                                                                                             exact>Producteurs</NavLink>
                         </li>
                         <li className="mr-6 transform hover:scale-105 duration-150"><NavLink activeClassName="underline"
-                                                                                             to="/marches">Marchés</NavLink>
+                                                                                             to="/marches"
+                                                                                             exact>Marchés</NavLink>
                         </li>
-                        <li className="mr-6 transform hover:scale-105 duration-150"><NavLink activeClassName="underline"
-                                                                                             to="/login">Se
-                            connecter</NavLink></li>
+                        <li className="mr-6 transform hover:scale-105 duration-150">
+                            <NavLink activeClassName="underline"
+                                     to="/login" exact>Se connecter</NavLink></li>
                         <li class="p-3 bg-white text-blue-600 font-semibold rounded-full transform hover:scale-105 hover:bg-blue-500
                         hover:border-white hover:border-opacity-100 hover:text-white duration-150">
-                            <NavLink activeClassName="underline" to="/signup">Inscrivez-vous</NavLink></li>
+                            <NavLink activeClassName="underline" to="/register" exact>Inscrivez-vous</NavLink></li>
                     </ul>
                 </div>
+                <Switch>
+                    <Route path="/" component={Homepage} exact/>
+                    <Route path="/login" component={Login} exact/>
+                    <Route path="/register" component={Register} exact/>
+                </Switch>
             </Router>
         </>
     );

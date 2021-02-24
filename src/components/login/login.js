@@ -39,8 +39,8 @@ class Login extends Component {
     render() {
         return (
             <div>
-                <div className="container">
-                    <div className="flex flex-row" style={{marginTop:"20px"}}>
+                <div className="container mx-auto">
+                    <div className="flex flex-row h-screen" style={{marginTop:"20px"}}>
                         <div className="grid grid-cols-12">
                             <form onSubmit={this.doLogin}>
                                     <label htmlFor="email"><strong>Email</strong></label>
