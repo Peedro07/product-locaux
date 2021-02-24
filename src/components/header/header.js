@@ -28,7 +28,7 @@ function Header() {
                         <li className="mr-6 transform hover:scale-105 duration-150">
                             <NavLink activeClassName="underline"
                                      to="/login" exact>Se connecter</NavLink></li>
-                        <li class="p-3 bg-white text-blue-600 font-semibold rounded-full transform hover:scale-105 hover:bg-blue-500
+                        <li className="p-3 bg-white text-blue-600 font-semibold rounded-full transform hover:scale-105 hover:bg-blue-500
                         hover:border-white hover:border-opacity-100 hover:text-white duration-150">
                             <NavLink activeClassName="underline" to="/register" exact>Inscrivez-vous</NavLink></li>
                     </ul>

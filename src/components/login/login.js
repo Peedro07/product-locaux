@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import AuthenticationService from "../../services/AuthService";
-
+import '../../index.css'
 class Login extends Component {
 
     constructor(props) {
@@ -27,7 +27,7 @@ class Login extends Component {
                 this.state.password)
             .then(
                 () => {
-                    this.props.history.push('/profile');
+                    this.props.history.push('/');
                 },
                 error => {
                     console.log("Login échoué: erreur = { " + error.toString() + " }");
@@ -38,43 +38,31 @@ class Login extends Component {
 
     render() {
         return (
-            <div>
-                <div className="container mx-auto">
-                    <div className="flex flex-row h-screen" style={{marginTop:"20px"}}>
-                        <div className="grid grid-cols-12">
-                            <form onSubmit={this.doLogin}>
-                                    <label htmlFor="email"><strong>Email</strong></label>
-                                    <input autoFocus
-                                           type="text"
-                                           name="email" id="email"
-                                           value={this.state.email}
-                                           placeholder="Entrez l'adresse mail"
-                                           autoComplete="email"
-                                           onChange={this.changeHandler}
-                                    />
-                                    <label htmlFor="password"><strong>Password</strong></label>
-                                    <input type="password"
-                                           name="password" id="password"
-                                           value={this.state.password}
-                                           placeholder="Entrez le mot de passe"
-                                           autoComplete="password"
-                                           onChange={this.changeHandler}
-                                    />
-
-                                <button type="submit" className="p-6 bg-yellow-300 font-semibold">
-                                   Se connecter
-                                </button>
-                                {
-                                    this.state.error && (
-                                        <div className="bg-red-600 text-white">
-                                            {this.state.error}
-                                        </div>
-                                    )
-                                }
-                            </form>
-                        </div>
+            <div className="w-full max-w-md m-auto bg-indigo-100 rounded p-10 mt-36 fade-in">
+                <form onSubmit={this.doLogin}>
+                    <div>
+                        <label className="block mb-2 text-indigo-500" htmlFor="email">Email</label>
+                        <input
+                            className="w-full p-2 mb-6 text-indigo-700 border-b-2 border-indigo-500 outline-none focus:bg-gray-300"
+                            type="text" id="email" name="email" placeholder="Ex: user@gmail.com" value={this.state.email} onChange={this.changeHandler}/>
                     </div>
-                </div>
+                    <div>
+                        <label className="block mb-2 text-indigo-500" htmlFor="password">Mot de passe</label>
+                        <input
+                            className="w-full p-2 mb-6 text-indigo-700 border-b-2 border-indigo-500 outline-none focus:bg-gray-300"
+                            type="password" name="password" placeholder="Votre mot de passe" value={this.state.password} onChange={this.changeHandler}/>
+                    </div>
+                    <div>
+                        <input
+                            className="w-full bg-blue-600 hover:bg-pink-700 text-white font-bold py-2 px-4 mb-6 rounded"
+                            type="submit"/>
+                    </div>
+                </form>
+                <footer>
+                    <a className="text-blue-600 hover:text-pink-700 text-sm float-left" href="#">Mot de passe oublié
+                        ?</a>
+                    <a className="text-blue-600 hover:text-pink-700 text-sm float-right" href="#">Créer un compte</a>
+                </footer>
             </div>);
     }
 }
