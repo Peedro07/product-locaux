@@ -1,21 +1,22 @@
 import './App.css';
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import {BrowserRouter as Router, Route} from "react-router-dom";
 import Header from "./components/header/header";
 import Login from "./components/login/login";
-
+import React from 'react';
+import Homepage from './components/homepage/Homepage'
+import Footer from "./components/footer/Footer";
 
 function App() {
+
     return (
-        <Router>
-            <div className="bg-indigo-400 h-full">
+        <div className="bg-gradient-to-tr from-blue-400 to-blue-700 h-full">
+            <Router>
                 <Header/>
-                <Switch>
-                    <Route path="/login">
-                        <Login/>
-                    </Route>
-                </Switch>
-            </div>
-        </Router>
+                <Route path="/" exact component={Homepage}/>
+                <Route path="/login" exact component={Login}/>
+                <Footer/>
+            </Router>
+        </div>
     );
 }
 
