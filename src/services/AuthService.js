@@ -8,7 +8,7 @@ class AuthenticationService {
                 if (response.data.user.token) {
                     localStorage.setItem("user", JSON.stringify(response.data.user.token));
                 }
-                return response.data;
+                return response.data.user;
             })
             .catch(err => {
                 console.log(err);
@@ -21,7 +21,7 @@ class AuthenticationService {
     }
 
     register = async (firstname, lastname, username, email, password) => {
-        return axios.post("/api/user/register", {
+        return axios.post("/user/register", {
             firstname,
             lastname,
             username,

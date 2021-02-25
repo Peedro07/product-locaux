@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import AuthenticationService from "../../services/AuthService";
 import '../../index.css'
+import {Redirect} from 'react-router-dom'
 class Login extends Component {
 
     constructor(props) {
@@ -9,7 +10,8 @@ class Login extends Component {
         this.state = {
             email: "",
             password: "",
-            error: ""
+            error: "",
+            token: false,
         };
     }
 
@@ -19,16 +21,21 @@ class Login extends Component {
         this.setState({[nam]: val});
     }
 
+    componentDidMount() {
+        let token = JSON.parse(localStorage.getItem('user'))
+        if(token){
+            this.setState({token: true});
+        }
+    }
+
     doLogin = async (event) => {
         event.preventDefault();
-
         AuthenticationService
             .login(this.state.email,
                 this.state.password)
             .then(
-                () => {
-                    console.log(AuthenticationService.getCurrentUser())
-                    this.props.history.push('/');
+                (user) => {
+                    this.props.setUser(user)
                 },
                 error => {
                     console.log("Login échoué: erreur = { " + error.toString() + " }");
@@ -38,6 +45,9 @@ class Login extends Component {
     }
 
     render() {
+        if(this.state.token === true){
+            return <Redirect to={"/"}/>;
+        }
         return (
             <div className="w-full max-w-md m-auto bg-indigo-100 rounded p-10 mt-36 fade-in">
                 <form onSubmit={this.doLogin}>

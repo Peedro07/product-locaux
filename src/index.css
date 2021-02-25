@@ -64,3 +64,48 @@ html, body{
     0% {opacity:0;}
     100% {opacity:1;}
 }
+
+#word::before {
+    content: "Nantaise";
+    animation: animate infinite 10s ease-in;
+    padding-left: 10px;
+}
+
+@keyframes animate {
+
+    0% {
+        content: "Angevine";
+        animation: fadeIn 3s;
+    }
+    10% {
+        content: "Brestoise";
+        animation: fadeIn 3s;
+    }
+    20% {
+        content: "Marseillaise";
+        animation: fadeIn 3s;
+
+    }
+    30% {
+        content: "Toulousaine";
+        animation: fadeIn 3s;
+
+    }
+    50% {
+        content: "Bordelaise";
+        animation: fadeIn 3s;
+
+    }
+    60% {
+        content: "Strasbourgeoise";
+        animation: fadeIn 3s;
+    }
+    70% {
+        content: "Parisienne";
+        animation: fadeIn 3s;
+    }
+    80%{
+        content: "Angevine";
+        animation: fadeIn ease 3s infinite;
+    }
+}
