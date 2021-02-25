@@ -21,6 +21,11 @@ const UserSchema = new mongoose.Schema({
         match: [/\S+@\S+\.\S+/, 'is invalid'],
         index: true
     },
+    firstName: String,
+    lastName: String,
+    birthDate: String,
+    roles: Array,
+    phoneNumber: String,
     hash: String,
     salt: String
 }, {timestamps: true});
@@ -52,6 +57,11 @@ UserSchema.methods.generateJWT = function () {
 UserSchema.methods.toAuthJSON = function () {
     return {
         username: this.username,
+        firstName: this.firstName,
+        lastName: this.lastName,
+        birthDate: this.birthDate,
+        phoneNumber: this.phoneNumber,
+        roles: this.roles,
         email: this.email,
         token: this.generateJWT()
     };

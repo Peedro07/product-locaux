@@ -59,10 +59,15 @@ router.post('/user/login', function (req, res, next) {
     })(req, res, next);
 });
 
-router.post('/users', function (req, res, next) {
+router.post('/user/register', function (req, res, next) {
     const user = new User();
     user.username = req.body.username;
     user.email = req.body.email;
+    user.firstName = req.body.firstName;
+    user.lastName = req.body.lastName;
+    user.birthDate = req.body.birthDate;
+    user.roles = ['USER_LOGGED'];
+    user.phoneNumber = req.body.phoneNumber;
     user.setPassword(req.body.password);
 
     user.save().then(function () {

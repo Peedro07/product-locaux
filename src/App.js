@@ -8,6 +8,7 @@ import Login from "./components/login/login";
 import Register from "./components/register/Register";
 import axios from "axios";
 import AuthService from "./services/AuthService";
+import Profile from "./components/profile/Profile";
 
 export default class App extends Component {
 
@@ -40,6 +41,7 @@ export default class App extends Component {
                         <Switch>
                             <Route path={'/login'} component={() => <Login setUser={this.setUser}/>}/>
                             <Route path={'/register'} component={() => <Register/>}/>
+                            <Route path={'/profile'} component={() => <Profile user={this.state.user}/>}/>
                         </Switch>
                     </Router>
                 </div>
